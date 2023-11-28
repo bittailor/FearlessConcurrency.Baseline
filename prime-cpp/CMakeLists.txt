@@ -9,6 +9,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-Wall -Wextra -Wpedantic)
 
+find_package( Threads REQUIRED )
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -32,6 +34,7 @@ add_executable(
 target_link_libraries(
   prime
   prime_lib
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 enable_testing()
@@ -45,6 +48,7 @@ target_link_libraries(
   prime_test
   prime_lib
   GTest::gtest_main
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 include(GoogleTest)
